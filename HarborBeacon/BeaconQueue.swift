@@ -11,7 +11,7 @@ import Foundation
 public class BeaconQueue {
     
     // MARK: - Properties
-    private static let BEACON_URL = URL(string:"https://harbor-stream-staging.herokuapp.com/beacon")
+    private static let BEACON_URL = URL(string:"https://harbor-services.herokuapp.com/beacon")
 
     private static func swiftVersionId() -> String {
         let dictionary = Bundle.main.infoDictionary!
