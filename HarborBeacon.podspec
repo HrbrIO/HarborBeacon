@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "HarborBeacon"
-  s.version      = "1.0.0"
+  s.version      = "1.0.1"
   s.summary      = "HarborBeacon sends is used to send Beacons to the Harbor Service."
 
   # This description is used to generate tags and improve search results.
