@@ -3,7 +3,7 @@
 //  HarborBeacon
 //
 //  Created by Scott Matheson on 11/15/18.
-//  Copyright © 2018 Harbor. All rights reserved.
+//  Copyright © 2018 HarborIO, Inc. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>

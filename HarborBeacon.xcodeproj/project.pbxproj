@@ -94,7 +94,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 1010;
-				ORGANIZATIONNAME = Harbor;
+				ORGANIZATIONNAME = "HarborIO, Inc.";
 				TargetAttributes = {
 					D2F946C0219E242400F3C9C2 = {
 						CreatedOnToolsVersion = 10.1;
