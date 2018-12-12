@@ -34,7 +34,6 @@ public class BeaconQueue {
     
     let baseURL: URL
     let session: URLSession
-    let apiKey: String?
     let deviceID: String
     let bundleID: String
     let nativeAppID: String
@@ -47,11 +46,6 @@ public class BeaconQueue {
         self.bundleID = Bundle.main.bundleIdentifier!
         self.deviceID = UIDevice.current.identifierForVendor?.uuidString ?? "????????-????-????-????-????????????"
         
-        if let hrbr = Bundle.main.object(forInfoDictionaryKey: "Harbor") as? [String:Any] {
-            self.apiKey = hrbr["APIKey"] as? String
-        } else {
-            self.apiKey = ""
-        }
         self.nativeAppID = self.bundleID + ":" + BeaconQueue.swiftVersionId()
     }
     
@@ -61,7 +55,7 @@ public class BeaconQueue {
         return sharedBeaconQueue
     }
     
-    private func buildRequest(_ msgType : String, appVer : String, beaconVer : String, time : TimeInterval? ) -> URLRequest {
+    private func buildRequest(_ msgType : String, apiKey: String, appVer : String, beaconVer : String, time : TimeInterval? ) -> URLRequest {
 
         let msec = time ?? Date().timeIntervalSince1970 * 1000
 
@@ -74,7 +68,7 @@ public class BeaconQueue {
         request.setValue(appVer,                forHTTPHeaderField:"appversionid")
         request.setValue(beaconVer,             forHTTPHeaderField:"beaconversionid")
 
-        request.setValue(self.apiKey,           forHTTPHeaderField:"apikey")
+        request.setValue(apiKey,                forHTTPHeaderField:"apikey")
         request.setValue(self.nativeAppID,      forHTTPHeaderField:"appversionidx")
         request.setValue(self.deviceID,         forHTTPHeaderField:"beaconinstanceid")
         
@@ -84,7 +78,7 @@ public class BeaconQueue {
         return request
     }
     
-    public func transmit(_ messageType : String, data : [String:Any], appVer : String, beaconVer : String) {
+    public func transmit(_ messageType : String, data : [String:Any], apiKey: String, appVer : String, beaconVer : String) {
         
         var jsonData : Data?
         
@@ -94,6 +88,7 @@ public class BeaconQueue {
         }
 
         let req = self.buildRequest(messageType,
+                                    apiKey: apiKey,
                                     appVer: appVer,
                                     beaconVer: beaconVer,
                                     time: Date().timeIntervalSince1970 * 1000)
